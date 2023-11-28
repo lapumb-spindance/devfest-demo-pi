@@ -1,0 +1,37 @@
+{
+    "name": "yocto-starter-kit",
+    "dockerFile": "Dockerfile",
+    "features": {
+      "ghcr.io/devcontainers/features/common-utils:2": {
+        "configureZshAsDefaultShell": true
+      },
+      "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+        "plugins": "aws zsh-autosuggestions zsh-completions fast-syntax-highlighting",
+        "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions https://github.com/zsh-users/zsh-completions https://github.com/zdharma-continuum/fast-syntax-highlighting"
+      }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+              "terminal.integrated.defaultProfile.linux": "zsh",
+              "terminal.integrated.profiles.linux": {
+                "bash": { "path": "bash", "icon": "terminal-bash" },
+                "zsh": { "path": "zsh" }
+              }
+            },
+            "extensions": [
+              "ms-vscode.cpptools",
+              "ms-python.python",
+              "github.copilot",
+              "streetsidesoftware.code-spell-checker",
+              "ms-azuretools.vscode-docker",
+              "esbenp.prettier-vscode",
+              "davidanson.vscode-markdownlint",
+              "eugenwiens.bitbake"
+            ]
+        }
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/sd-dev/src/yocto-starter-kit,type=bind,consistency=cached",
+    "workspaceFolder": "/home/sd-dev/src/yocto-starter-kit",
+    "runArgs": ["--name", "yocto-starter-kit"]
+}

@@ -1,0 +1,7 @@
+export BUILD_DIR="$REPO_ROOT/build"
+export TARGET="core-image-weston"
+export USER_SSTATE_DIR="$BUILD_DIR/sstate-cache"
+export USER_DL_DIR="$BUILD_DIR/downloads"
+export OUTPUT_IMAGE_DIR="${REPO_ROOT}/../build_images"
+export USER_BB_NUMBER_THREADS=$(nproc)
+export USER_PARALLEL_MAKE=$(nproc)

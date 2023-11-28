@@ -1,0 +1,5 @@
+build*/
+cache*/
+bitbake-*
+.userenv
+.DS_Store
