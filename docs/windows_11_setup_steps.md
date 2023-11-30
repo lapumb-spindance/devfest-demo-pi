@@ -39,7 +39,7 @@ This document is meant to describe the setup process to begin development in thi
     PreferredAuthentications publickey
     ```
 
-    where the `IdentityFile` is the path to the private key, and the `Host` is the alias you want to use for the host. You can use this new configuration to clone this repo with: `git clone --recursive git@github.com-spindance:lapumb-spindance/yocto-starter-kit.git`
+    where the `IdentityFile` is the path to the private key, and the `Host` is the alias you want to use for the host. You can use this new configuration to clone this repo with: `git clone --recursive git@github.com-spindance:lapumb-spindance/devfest-pi-demo.git`
 
     **Notice the `..@github.com-spindance` in the URL. This is the alias we defined in the `~/.ssh/config` file, which means the `IdentityFile` for that host will be used.**
 

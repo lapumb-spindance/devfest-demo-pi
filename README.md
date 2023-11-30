@@ -1,6 +1,6 @@
-# yocto-starter-kit
+# devfest-pi-demo
 
-This repository utilizes the [Yocto Project](https://www.yoctoproject.org/)'s [Poky](https://www.yoctoproject.org/software-item/poky/) reference distribution and is meant to be a starting point for embedded Linux development.
+This repository utilizes the [Yocto Project](https://www.yoctoproject.org/)'s [Poky](https://www.yoctoproject.org/software-item/poky/) reference distribution to build an embedded Linux OS capable of running [Flutter](https://flutter.dev/) in a few different ways.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ If you are on a Windows 11 (or 10) host, see [windows_11_setup_steps.md](docs/wi
 Clone this repository:
 
 ```bash
-git clone --recursive git@github.com:spindance/yocto-starter-kit.git
+git clone --recursive git@github.com:lapumb-spindance/devfest-demo-pi.git
 ```
 
 >Note: if you do not add the `--recursive` flag, run `./tools/update_submodules.sh` once the repository has successfully been cloned.

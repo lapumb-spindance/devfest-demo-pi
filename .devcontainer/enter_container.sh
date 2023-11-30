@@ -19,4 +19,4 @@ fi
 devcontainer up --workspace-folder ../
 
 # Enter the devcontainer.
-docker exec -w /home/sd-dev/src/yocto-starter-kit -it --user sd-dev yocto-starter-kit zsh
+docker exec -w /home/sd-dev/src/devfest-pi-demo -it --user sd-dev devfest-pi-demo zsh

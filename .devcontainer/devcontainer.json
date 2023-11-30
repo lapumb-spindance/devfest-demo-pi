@@ -1,5 +1,5 @@
 {
-    "name": "yocto-starter-kit",
+    "name": "devfest-pi-demo",
     "dockerFile": "Dockerfile",
     "features": {
       "ghcr.io/devcontainers/features/common-utils:2": {
@@ -31,7 +31,7 @@
             ]
         }
     },
-    "workspaceMount": "source=${localWorkspaceFolder},target=/home/sd-dev/src/yocto-starter-kit,type=bind,consistency=cached",
-    "workspaceFolder": "/home/sd-dev/src/yocto-starter-kit",
-    "runArgs": ["--name", "yocto-starter-kit"]
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/sd-dev/src/devfest-pi-demo,type=bind,consistency=cached",
+    "workspaceFolder": "/home/sd-dev/src/devfest-pi-demo",
+    "runArgs": ["--name", "devfest-pi-demo"]
 }
