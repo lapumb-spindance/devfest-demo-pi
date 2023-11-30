@@ -1,0 +1,16 @@
+[Unit]
+Description=Flutter Gallery demo app
+After=weston.service
+Wants=weston.service
+
+[Service]
+Type=simple
+ExecStart=flutter-client -f --bundle=/usr/share/flutter/gallery/3.13.9/release/ --app-id=org.lapumb.demo.gallery
+User=weston
+Group=weston
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=WAYLAND_DISPLAY=wayland-1
+Restart=always
+
+[Install]
+WantedBy=graphical.target

@@ -1,5 +1,3 @@
-Pivotal Tracker: [link](link)
-
 # Motivation for Change
 
 _Why does this code exist?_
