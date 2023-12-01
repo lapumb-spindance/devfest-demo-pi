@@ -133,7 +133,7 @@ If you are _not_ on a native Linux machine, use the following for flashing:
 1. [ESP-Prog](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/other/esp-prog/user_guide.html)
 
 ![Hardware Setup](docs/images/rpi02w_touchscreen_setup.jpg)
-
+asdfasdf
 ## Running the Embedder Examples
 
 The following sections outline the steps required to start and stop each embedder example. Please note that you must follow the "stop" steps for each example before starting another example.
