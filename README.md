@@ -120,9 +120,94 @@ If you are _not_ on a native Linux machine, use the following for flashing:
   >Keep the default options, but when "SELECT"ing a file, make sure to change the filter to `All files (*.*)`. When you plug in your uSD card, Windows will complain. Only focus on the `rufus` application and do not do anything with any explorer windows that pop up.
 - MacOS: [balenaEtcher](https://etcher.balena.io/#download-etcher)
 
+## Hardware Setup
+
+1. [Raspberry Pi Zero 2W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/)
+1. [uUSB <--> uUSB cable](https://a.co/d/allFavy)
+1. [uSD Card](https://a.co/d/2fGnNks)
+1. [Waveshare 7" Capacitive Touch Display](https://www.waveshare.com/7inch-hdmi-lcd-h.htm)
+1. [Header Pins](https://www.amazon.com/Jabinco-Breakable-Header-Connector-Arduino/dp/B0817JG3XN/ref=sr_1_4?keywords=header+pins&qid=1701398568&sr=8-4)
+
+    >Note: you will have to solder these pins to the Raspberry Pi Zero 2W. If you are not comfortable with soldering, you can use a [Raspberry Pi Zero 2W with pre-soldered header pins](https://www.pishop.us/product/raspberry-pi-zero-2-w-with-pre-soldered-headers/), or a _different_ Raspberry Pi SBC. If you opt for the latter, you will need to update the `MACHINE` variable in the [local.conf](conf/local.conf) file to match your [Raspberry Pi SBC](https://github.com/agherzan/meta-raspberrypi/tree/kirkstone/conf/machine).
+
+1. [ESP-Prog](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/other/esp-prog/user_guide.html)
+
+![Hardware Setup](docs/images/rpi02w_touchscreen_setup.jpg)
+
+## Running the Embedder Examples
+
+The following sections outline the steps required to start and stop each embedder example. Please note that you must follow the "stop" steps for each example before starting another example.
+
+### `wayland` Embedder
+
+To run the Gallery application using the `wayland` embedder, run the following:
+
+  ```bash
+  # Start the Weston compositor
+  systemctl start weston
+
+  # Run the example
+  systemctl start flutter-gallery
+
+  # Note: if you want to monitor the service and Flutter logs:
+  journalctl -fu flutter-gallery
+  ```
+
+To stop the example, run:
+
+  ```bash
+  systemctl stop weston
+  systemctl stop flutter-gallery
+  ```
+
+### `DRM` Embedder
+
+To run the Gallery application using the `DRM` embedder, run the following:
+
+  ```bash
+  flutter-drm-gbm-backend --bundle=/usr/share/flutter/gallery/3.13.9/release/
+
+  # Optionally: append a " &" to the end of the command to run in the background so you can perform other tasks in the terminal
+  ```
+
+To stop the example, run:
+
+  ```bash
+  # Find your process ID
+  ps aux | grep flutter-drm-gbm-backend
+
+  # Kill the process
+  kill <process_id>
+  ```
+
+### `flutter-pi` Embedder
+
+To run the Gallery application using the `flutter-pi` embedder, run the following:
+
+  ```bash
+  flutter-pi --release /usr/share/flutter/gallery/3.13.9/release/
+
+  # Optionally: append a " &" to the end of the command to run in the background so you can perform other tasks in the terminal
+  ```
+
+To stop the example, run:
+
+  ```bash
+  # Find your process ID
+  ps aux | grep flutter-pi
+
+  # Kill the process
+  kill <process_id>
+  ```
+
 ## Helpful Resources
 
 - [Yocto Project Documentation](https://docs.yoctoproject.org/4.0.11/singleindex.html)
 - [OpenEmbedded Layers Index](https://layers.openembedded.org/layerindex/branch/kirkstone/layers/)
 - [DigiKey Yocto Project Introduction](https://www.youtube.com/playlist?list=PLEBQazB0HUyTpoJoZecRK6PpDG31Y7RPB)
   >The first video in the series is focused on [buildroot](https://buildroot.org/), but the rest of the videos are focused on the Yocto Project.
+- [Helpful Embedded Flutter Plugins](https://github.com/sony/flutter-elinux-plugins#plugins)
+- [Helpful Linux Flutter Packages](https://github.com/ardera/flutter-pi#-useful-dart-packages)
+- [Debugging Embedded Flutter Applications](https://github.com/sony/flutter-embedded-linux/wiki/How-to-debug-Flutter-apps)
+- [Debugging Flutter Embedders](https://github.com/sony/flutter-embedded-linux/wiki/Building-Embedded-Linux-embedding-for-Flutter#how-to-debug-the-embedder)
+- [`libflutter_engine.so` Command Line Switches](https://github.com/flutter/engine/blob/main/shell/common/switches.h)
