@@ -27,7 +27,7 @@
               "ms-azuretools.vscode-docker",
               "esbenp.prettier-vscode",
               "davidanson.vscode-markdownlint",
-              "eugenwiens.bitbake"
+              "microhobby.bitbake2"
             ]
         }
     },

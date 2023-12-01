@@ -108,11 +108,13 @@ This repository is setup in a way that makes it simple for multiple developers t
 
 >Note: this script is used within the [build.sh](build.sh). Do not use this script directly unless you are experienced with the Yocto Project tooling.
 
-## Building and Flashing an Image
+## Building and Flashing the Image
 
 Once you have your environment setup and your hardware connected, it is time to build and flash the image to a uSD card. Building has been simplified to a `build.sh` script, which will build the `core-image-base` image by default. To build the image, simply run `./build.sh`.
 
 Once the build completes successfully, you can flash the image to a uSD card by running `./flash.sh` **if you are working on a native Linux machine**. This script will automatically detect the newest image, but you also have the option to supply a specific image. Run `./flash.sh -h` for more information.
+
+>Please note that running the `flash.sh` script requires `sudo` privileges, and that :warning: you **must be cautious when specifying your device**. If you specify the wrong device, you could potentially wipe your hard drive. Use `lsblk` to detect find your uSD device. **You have been warned** :warning:.
 
 If you are _not_ on a native Linux machine, use the following for flashing:
 
@@ -133,6 +135,42 @@ If you are _not_ on a native Linux machine, use the following for flashing:
 1. [ESP-Prog](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/other/esp-prog/user_guide.html)
 
 ![Hardware Setup](docs/images/rpi02w_touchscreen_setup.jpg)
+
+## Serial Monitoring
+
+On the ESP-Prog, we will use the 6-pin breakout section. Below is the pin layout for this section (`x`'s denote pins we don't care about):
+
+```text
+    +--------------+
+    |  x   GND  x  |
+    |  x   TX  RX  |
+    +-----    -----+
+```
+
+>NOTE: Notice the orientation of the break in the bottom of the wall around these pins; please make sure when you are wiring this, that break is facing down/south.
+
+Once you have wires connected to those pins, please connect them to their respective pins on the Raspberry Pi breakout header:
+
+```text
+    +-----------+
+    |  x   x    |
+    |  x   x    |
+    |  x   GND  |
+    |  x   TX   |
+    |  x   RX   |
+    |  x   x    |
+    |  ..  ..   |
+    +-----------+
+```
+
+>NOTE: When looking at the Raspberry Pi, the above diagram assumes an orientation where the pins on the **right** side of the board.
+
+Once the connections are made, you can monitor serial output from your Raspberry Pi by executing `picocom` (`sudo apt install picocom`), `minicom` (`sudo apt install minicom`), or any other serial monitoring tool of your choice after finding your device (`ls /dev/ttyUSB*`) and setting the baud rate to `115200`:
+
+```bash
+# To exit picocom, press Ctrl+A followed by Ctrl+X.
+picocom -b 115200 /dev/ttyUSB1
+```
 
 ## Running the Embedder Examples
 
@@ -211,3 +249,4 @@ To stop the example, run:
 - [Debugging Embedded Flutter Applications](https://github.com/sony/flutter-embedded-linux/wiki/How-to-debug-Flutter-apps)
 - [Debugging Flutter Embedders](https://github.com/sony/flutter-embedded-linux/wiki/Building-Embedded-Linux-embedding-for-Flutter#how-to-debug-the-embedder)
 - [`libflutter_engine.so` Command Line Switches](https://github.com/flutter/engine/blob/main/shell/common/switches.h)
+- [Raspberry Pi 40-pin Header Pinout](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#gpio-and-the-40-pin-header)
