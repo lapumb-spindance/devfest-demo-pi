@@ -212,7 +212,7 @@ To stop the example, run:
 
   ```bash
   # Find your process ID
-  ps aux | grep flutter-drm-gbm-backend
+  ps | grep flutter-drm-gbm-backend
 
   # Kill the process
   kill <process_id>
@@ -232,7 +232,7 @@ To stop the example, run:
 
   ```bash
   # Find your process ID
-  ps aux | grep flutter-pi
+  ps | grep flutter-pi
 
   # Kill the process
   kill <process_id>
